@@ -1,14 +1,74 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/db113c2254.js" crossorigin="anonymous"></script>
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Delicious+Handrawn&family=Montserrat:wght@200;400;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="./css/main.css">
-    <title>Gotuj łatwo</title>
+    <title>Cook & Plan</title>
 </head>
+
 <body>
+    <nav class="nav" id="nav">
+        <div class="nav__title">Cook & Plan</div>
+        <ul class="nav__list">
+            <li class="nav__list-item"><button class="nav__list-button">Last searched</button></li>
+            <li class="nav__list-item"><button class="nav__list-button">Advanced search</button></li>
+            <li class="nav__list-item"><button class="nav__list-button">Favourite</button></li>
+        </ul>
+        <button class="nav__burger"><i class="fa-solid fa-bars"></i></button>
+    </nav>
+
+    <header>
+        <h1 class="header">Welcome to the app, where you can search your favourite dishes, learn about how to prepare
+            them, their nutrition values and much more</h1>
+    </header>
+
+    <main class="main">
+
+        <div class="search">
+            <input class="search__menu" placeholder="Enter meal or ingredient"></input>
+            <p class="search__warning">Bad ingredient</p>
+        </div>
+
+        <div class="recipe">
+            <div class="recipe__item">
+                <div class="recipe__item-image"></div>
+                <div class="recipe__item-container">
+                    <div class="recipe__item-container-header">
+                        <p class="recipe__item-container-title">Title: Rigatoni With Spicy Salami And Tomato recipes
+                        </p>
+                        <a href="#" class="recipe__item-container-link">View Recipe</a>
+                    </div>
+                    <div class="recipe__item-container-info">
+                        <p class="recipe__item-container-cuisine">Cuisine: eastern europe</p>
+                        <p class="recipe__item-container-fat">Fat: 111g</p>
+                        <p class="recipe__item-container-diet">Diet: High-Protein</p>
+                        <p class="recipe__item-container-carb">Carb: 112g</p>
+                        <p class="recipe__item-container-calories">Kalorie: 2000kcal</p>
+                        <p class="recipe__item-container-protein">Protein: 114g</p>
+                    </div>
+                    <button class="recipe__item-container-fav">Add to favourite</button>
+
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+
+
 
     <script src="main.js"></script>
 </body>
+
 </html>
