@@ -38,7 +38,7 @@ body {
 		border-radius: 5px;
 		transition: background-color 0.3s, color 0.3s;
 
-		@include mixin.focus;
+		@include mixins.focus;
 	}
 
 	&__list {
@@ -55,7 +55,7 @@ h1.header {
 
 .main {
 	width: 95%;
-	margin: 1rem auto;
+	margin: 1rem auto 0;
 }
 
 .search {
@@ -64,8 +64,9 @@ h1.header {
 	align-items: center;
 	margin: 2rem;
 
-	&__menu {
+	&__input {
 		width: 100%;
+		max-width: 40rem;
 		padding: 1rem;
 		border-radius: 5px;
 		border: 1px solid #000;
@@ -90,8 +91,10 @@ h1.header {
 	flex-wrap: wrap;
 
 	&__item {
-		height: 40rem;
+		height: 45rem;
+		margin-bottom: 2rem;
 		width: 100%;
+		max-width: 40rem;
 		border: 1px solid #000;
 
 		&-image {
@@ -116,7 +119,7 @@ h1.header {
 			&-title {
 				font-size: 1.2rem;
 				font-weight: bold;
-				width: 60%;
+				width: 55%;
 			}
 
 			&-link {
@@ -147,11 +150,76 @@ h1.header {
 
 			&-fav {
 				display: block;
-				margin: 0.5rem auto 1rem;
+				margin: 1rem auto 0.5rem;
 
 				@include mixins.button-properties;
 				@include mixins.focus;
 			}
+
+			&-warning {
+				// display: none;
+				text-align: center;
+				color: #f00;
+			}
+		}
+	}
+}
+
+@media (min-width: 350px) {
+	.recipe__item-container {
+		margin: 1.5rem;
+		font-size: 1.2rem;
+	}
+}
+
+@media (min-width: 568px) {
+	.nav,
+	.header {
+		max-width: 60rem;
+		margin: 0 auto;
+	}
+}
+
+@media (min-width: 768px) {
+	.nav,
+	.header {
+		max-width: 90rem;
+	}
+	.recipe {
+		justify-content: space-around;
+
+		&__item {
+			width: 45%;
+			max-width: 40rem;
+			margin-bottom: 4rem;
+		}
+	}
+}
+
+@media (min-width: 992px) {
+	.nav,
+	.header {
+		max-width: 120rem;
+        padding: 3rem;
+	}
+
+	.nav {
+		&__burger {
+			font-size: 3rem;
+		}
+        
+		&__title {
+			font-size: 4rem;
+		}
+	}
+
+	h1.header {
+		font-size: 2.6rem;
+		margin: 2rem auto;
+	}
+	.recipe {
+		&__item {
+			width: 32%;
 		}
 	}
 }
