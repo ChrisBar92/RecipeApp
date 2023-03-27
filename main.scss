@@ -16,6 +16,7 @@ body {
 	min-height: 100vh;
 	font-size: 1.6rem;
 	font-family: 'Montserrat', sans-serif;
+	background-color: #e0e1dd;
 }
 
 .nav {
@@ -96,6 +97,7 @@ h1.header {
 		width: 100%;
 		max-width: 40rem;
 		border: 1px solid #000;
+		background-color: #fefae0;
 
 		&-image {
 			background-image: url('https://cdn.pixabay.com/photo/2023/03/17/12/03/roe-deer-7858518_960_720.jpg');
@@ -140,12 +142,20 @@ h1.header {
 			&-protein {
 				width: 40%;
 				margin-bottom: 1rem;
+
+				span {
+					font-weight: bold;
+				}
 			}
 
 			&-cuisine,
 			&-diet,
 			&-calories {
 				width: 55%;
+
+				span {
+					font-weight: bold;
+				}
 			}
 
 			&-fav {
@@ -185,6 +195,15 @@ h1.header {
 	.header {
 		max-width: 90rem;
 	}
+    
+	.nav__burger {
+		display: none;
+	}
+
+	.search__input {
+		max-width: 50rem;
+	}
+
 	.recipe {
 		justify-content: space-around;
 
@@ -200,14 +219,10 @@ h1.header {
 	.nav,
 	.header {
 		max-width: 120rem;
-        padding: 3rem;
+		padding: 3rem;
 	}
 
 	.nav {
-		&__burger {
-			font-size: 3rem;
-		}
-        
 		&__title {
 			font-size: 4rem;
 		}
@@ -217,9 +232,30 @@ h1.header {
 		font-size: 2.6rem;
 		margin: 2rem auto;
 	}
+
+	.search__input {
+		max-width: 60rem;
+	}
+
 	.recipe {
 		&__item {
 			width: 32%;
+		}
+	}
+}
+
+@media (min-width: 1200px) {
+	.nav,
+	.header,
+	.main {
+		max-width: 140rem;
+	}
+
+	.recipe__item-container {
+		font-size: 1.2rem;
+
+		&-title {
+			font-size: 1.3rem;
 		}
 	}
 }

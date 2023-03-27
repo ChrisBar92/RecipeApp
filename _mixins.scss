@@ -2,7 +2,7 @@
 	padding: 1rem;
 	text-align: center;
 	font-weight: bold;
-	background-color: #ddd;
+	background-color: #edede9;
 	color: #000;
 	border-radius: 5px;
 	border: 1px solid #000;
@@ -11,9 +11,9 @@
 }
 
 @mixin focus {
-	&:focus {
+	&:hover {
 		outline: none;
 		background-color: #333;
-		color: #fff;
+		color: #f1faee;
 	}
 }

@@ -14,6 +14,7 @@ body {
   min-height: 100vh;
   font-size: 1.6rem;
   font-family: "Montserrat", sans-serif;
+  background-color: #e0e1dd;
 }
 
 .nav {
@@ -35,10 +36,10 @@ body {
   border-radius: 5px;
   transition: background-color 0.3s, color 0.3s;
 }
-.nav__burger:focus {
+.nav__burger:hover {
   outline: none;
   background-color: #333;
-  color: #fff;
+  color: #f1faee;
 }
 .nav__list {
   display: none;
@@ -91,6 +92,7 @@ h1.header {
   width: 100%;
   max-width: 40rem;
   border: 1px solid #000;
+  background-color: #fefae0;
 }
 .recipe__item-image {
   background-image: url("https://cdn.pixabay.com/photo/2023/03/17/12/03/roe-deer-7858518_960_720.jpg");
@@ -119,17 +121,17 @@ h1.header {
   padding: 1rem;
   text-align: center;
   font-weight: bold;
-  background-color: #ddd;
+  background-color: #edede9;
   color: #000;
   border-radius: 5px;
   border: 1px solid #000;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
-.recipe__item-container-link:focus {
+.recipe__item-container-link:hover {
   outline: none;
   background-color: #333;
-  color: #fff;
+  color: #f1faee;
 }
 .recipe__item-container-info {
   display: flex;
@@ -140,8 +142,14 @@ h1.header {
   width: 40%;
   margin-bottom: 1rem;
 }
+.recipe__item-container-fat span, .recipe__item-container-carb span, .recipe__item-container-protein span {
+  font-weight: bold;
+}
 .recipe__item-container-cuisine, .recipe__item-container-diet, .recipe__item-container-calories {
   width: 55%;
+}
+.recipe__item-container-cuisine span, .recipe__item-container-diet span, .recipe__item-container-calories span {
+  font-weight: bold;
 }
 .recipe__item-container-fav {
   display: block;
@@ -149,17 +157,17 @@ h1.header {
   padding: 1rem;
   text-align: center;
   font-weight: bold;
-  background-color: #ddd;
+  background-color: #edede9;
   color: #000;
   border-radius: 5px;
   border: 1px solid #000;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
-.recipe__item-container-fav:focus {
+.recipe__item-container-fav:hover {
   outline: none;
   background-color: #333;
-  color: #fff;
+  color: #f1faee;
 }
 .recipe__item-container-warning {
   text-align: center;
@@ -184,6 +192,12 @@ h1.header {
   .header {
     max-width: 90rem;
   }
+  .nav__burger {
+    display: none;
+  }
+  .search__input {
+    max-width: 50rem;
+  }
   .recipe {
     justify-content: space-around;
   }
@@ -199,9 +213,6 @@ h1.header {
     max-width: 120rem;
     padding: 3rem;
   }
-  .nav__burger {
-    font-size: 3rem;
-  }
   .nav__title {
     font-size: 4rem;
   }
@@ -209,7 +220,23 @@ h1.header {
     font-size: 2.6rem;
     margin: 2rem auto;
   }
+  .search__input {
+    max-width: 60rem;
+  }
   .recipe__item {
     width: 32%;
+  }
+}
+@media (min-width: 1200px) {
+  .nav,
+  .header,
+  .main {
+    max-width: 140rem;
+  }
+  .recipe__item-container {
+    font-size: 1.2rem;
+  }
+  .recipe__item-container-title {
+    font-size: 1.3rem;
   }
 }/*# sourceMappingURL=main.css.map */
