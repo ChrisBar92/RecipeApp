@@ -6,6 +6,7 @@
 	box-sizing: border-box;
 	list-style: none;
 	text-decoration: none;
+	color: #000;
 }
 
 html {
@@ -20,11 +21,12 @@ body {
 }
 
 .nav {
+	position: relative;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-bottom: 0rem;
 	padding: 2rem;
+	margin-bottom: 0;
 
 	&__title {
 		text-transform: uppercase;
@@ -37,14 +39,33 @@ body {
 		font-size: 1.8rem;
 		border: 1px solid #000;
 		border-radius: 5px;
-		transition: background-color 0.3s, color 0.3s;
-
-		@include mixins.focus;
 	}
 
 	&__list {
-		display: none;
+		position: absolute;
+		left: -70%;
+		top: 0;
+		height: 100vh;
+		width: 70vw;
+		background-color: #f5ebe0;
+		border-right: 1px solid #000;
+		transition: all 1s;
+
+		&-item {
+			margin: 7rem 0;
+			cursor: pointer;
+		}
+
+		&-button {
+			border-radius: 5px;
+			padding: 1rem;
+			width: 100%;
+			font-size: 2.2rem;
+		}
 	}
+}
+.activeNav {
+	left: 0;
 }
 
 h1.header {
@@ -57,6 +78,70 @@ h1.header {
 .main {
 	width: 95%;
 	margin: 1rem auto 0;
+}
+
+.list-buttons {
+	display: flex;
+	justify-content: center;
+	padding: 2rem 0;
+
+	&__item {
+		font-size: 1.8rem;
+		@include mixins.button-properties;
+		@include mixins.focus;
+		padding: 1rem 2rem;
+		margin: 0 2rem;
+	}
+}
+
+.additional-menus {
+	margin: 2rem 0;
+	display: flex;
+	justify-content: center;
+
+	&__favourite-recipes {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__last-searched {
+		padding: 1rem;
+		border: 1px solid #000;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+
+		&-text {
+			padding: 1rem 0;
+			text-align: center;
+			margin-bottom: 1rem;
+			font-size: 1.4rem;
+		}
+
+		&-list {
+			text-align: center;
+
+			&-item {
+				margin: 1rem 0;
+				font-size: 1.2rem;
+				list-style: inside;
+				list-style-type: decimal;
+
+				&-link {
+					cursor: pointer;
+				}
+			}
+		}
+	}
+
+	.clear {
+		margin-top: 1rem;
+		margin-left: auto;
+		@include mixins.button-properties;
+
+		padding: 0.5rem 1rem;
+	}
 }
 
 .search {
@@ -99,12 +184,16 @@ h1.header {
 		border: 1px solid #000;
 		background-color: #fefae0;
 
-		&-image {
-			background-image: url('https://cdn.pixabay.com/photo/2023/03/17/12/03/roe-deer-7858518_960_720.jpg');
+		&-boxImage {
 			height: 50%;
 			width: 100%;
-			background-size: cover;
-			background-position: center;
+
+			&-image {
+				height: 100%;
+				width: 100%;
+				background-size: cover;
+				background-position: center;
+			}
 		}
 
 		&-container {
@@ -128,13 +217,14 @@ h1.header {
 				width: 39%;
 
 				@include mixins.button-properties;
-				@include mixins.focus;
+				
 			}
 
 			&-info {
 				display: flex;
 				flex-wrap: wrap;
 				justify-content: space-between;
+				padding-bottom: 1rem;
 			}
 
 			&-fat,
@@ -160,10 +250,10 @@ h1.header {
 
 			&-fav {
 				display: block;
-				margin: 1rem auto 0.5rem;
+				margin: 1rem auto;
 
 				@include mixins.button-properties;
-				@include mixins.focus;
+				
 			}
 
 			&-warning {
@@ -173,6 +263,14 @@ h1.header {
 			}
 		}
 	}
+}
+
+.hide {
+	display: none;
+}
+
+.added {
+	background-color: gold;
 }
 
 @media (min-width: 350px) {
@@ -195,7 +293,7 @@ h1.header {
 	.header {
 		max-width: 90rem;
 	}
-    
+
 	.nav__burger {
 		display: none;
 	}
@@ -249,13 +347,5 @@ h1.header {
 	.header,
 	.main {
 		max-width: 140rem;
-	}
-
-	.recipe__item-container {
-		font-size: 1.2rem;
-
-		&-title {
-			font-size: 1.3rem;
-		}
 	}
 }

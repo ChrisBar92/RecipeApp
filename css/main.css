@@ -4,6 +4,7 @@
   box-sizing: border-box;
   list-style: none;
   text-decoration: none;
+  color: #000;
 }
 
 html {
@@ -18,11 +19,12 @@ body {
 }
 
 .nav {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0rem;
   padding: 2rem;
+  margin-bottom: 0;
 }
 .nav__title {
   text-transform: uppercase;
@@ -34,15 +36,30 @@ body {
   font-size: 1.8rem;
   border: 1px solid #000;
   border-radius: 5px;
-  transition: background-color 0.3s, color 0.3s;
-}
-.nav__burger:hover {
-  outline: none;
-  background-color: #333;
-  color: #f1faee;
 }
 .nav__list {
-  display: none;
+  position: absolute;
+  left: -70%;
+  top: 0;
+  height: 100vh;
+  width: 70vw;
+  background-color: #f5ebe0;
+  border-right: 1px solid #000;
+  transition: all 1s;
+}
+.nav__list-item {
+  margin: 7rem 0;
+  cursor: pointer;
+}
+.nav__list-button {
+  border-radius: 5px;
+  padding: 1rem;
+  width: 100%;
+  font-size: 2.2rem;
+}
+
+.activeNav {
+  left: 0;
 }
 
 h1.header {
@@ -55,6 +72,81 @@ h1.header {
 .main {
   width: 95%;
   margin: 1rem auto 0;
+}
+
+.list-buttons {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+}
+.list-buttons__item {
+  font-size: 1.8rem;
+  padding: 1rem;
+  text-align: center;
+  font-weight: bold;
+  background-color: #edede9;
+  color: #000;
+  border-radius: 5px;
+  border: 1px solid #000;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  padding: 1rem 2rem;
+  margin: 0 2rem;
+}
+.list-buttons__item:hover {
+  outline: none;
+  background-color: #333;
+  color: #f1faee;
+}
+
+.additional-menus {
+  margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+}
+.additional-menus__favourite-recipes {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.additional-menus__last-searched {
+  padding: 1rem;
+  border: 1px solid #000;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.additional-menus__last-searched-text {
+  padding: 1rem 0;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+.additional-menus__last-searched-list {
+  text-align: center;
+}
+.additional-menus__last-searched-list-item {
+  margin: 1rem 0;
+  font-size: 1.2rem;
+  list-style: inside;
+  list-style-type: decimal;
+}
+.additional-menus__last-searched-list-item-link {
+  cursor: pointer;
+}
+.additional-menus .clear {
+  margin-top: 1rem;
+  margin-left: auto;
+  padding: 1rem;
+  text-align: center;
+  font-weight: bold;
+  background-color: #edede9;
+  color: #000;
+  border-radius: 5px;
+  border: 1px solid #000;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  padding: 0.5rem 1rem;
 }
 
 .search {
@@ -94,9 +186,12 @@ h1.header {
   border: 1px solid #000;
   background-color: #fefae0;
 }
-.recipe__item-image {
-  background-image: url("https://cdn.pixabay.com/photo/2023/03/17/12/03/roe-deer-7858518_960_720.jpg");
+.recipe__item-boxImage {
   height: 50%;
+  width: 100%;
+}
+.recipe__item-boxImage-image {
+  height: 100%;
   width: 100%;
   background-size: cover;
   background-position: center;
@@ -128,15 +223,11 @@ h1.header {
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
-.recipe__item-container-link:hover {
-  outline: none;
-  background-color: #333;
-  color: #f1faee;
-}
 .recipe__item-container-info {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding-bottom: 1rem;
 }
 .recipe__item-container-fat, .recipe__item-container-carb, .recipe__item-container-protein {
   width: 40%;
@@ -153,7 +244,7 @@ h1.header {
 }
 .recipe__item-container-fav {
   display: block;
-  margin: 1rem auto 0.5rem;
+  margin: 1rem auto;
   padding: 1rem;
   text-align: center;
   font-weight: bold;
@@ -164,14 +255,17 @@ h1.header {
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
-.recipe__item-container-fav:hover {
-  outline: none;
-  background-color: #333;
-  color: #f1faee;
-}
 .recipe__item-container-warning {
   text-align: center;
   color: #f00;
+}
+
+.hide {
+  display: none;
+}
+
+.added {
+  background-color: gold;
 }
 
 @media (min-width: 350px) {
@@ -232,11 +326,5 @@ h1.header {
   .header,
   .main {
     max-width: 140rem;
-  }
-  .recipe__item-container {
-    font-size: 1.2rem;
-  }
-  .recipe__item-container-title {
-    font-size: 1.3rem;
   }
 }/*# sourceMappingURL=main.css.map */

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -21,11 +21,14 @@
     <nav class="nav" id="nav">
         <div class="nav__title">Cook & Plan</div>
         <ul class="nav__list">
-            <li class="nav__list-item"><button class="nav__list-button">Last searched</button></li>
-            <li class="nav__list-item"><button class="nav__list-button">Advanced search</button></li>
-            <li class="nav__list-item"><button class="nav__list-button">Favourite</button></li>
+            <li class="nav__list-item"><button class="nav__list-button last-searched">Last searched</button></li>
+            <li class="nav__list-item"><button class="nav__list-button advanced-search">Advanced search</button></li>
+            <li class="nav__list-item"><button class="nav__list-button favourite-recipes">Favourite</button></li>
         </ul>
-        <button class="nav__burger"><i class="fa-solid fa-bars"></i></button>
+        <button class="nav__burger">
+            <i class="fa-solid fa-bars"></i>
+            <i class="fa-solid fa-times hide"></i>
+        </button>
     </nav>
 
     <header>
@@ -36,132 +39,83 @@
     <main class="main">
 
         <div class="search">
-            <input class="search__input" placeholder="Enter meal or ingredient"></input>
-            <p class="search__warning">Bad ingredient</p>
+            <input class="search__input" placeholder="Input meal or ingredient and press Enter"></input>
+            <p class="search__warning"></p>
+        </div>
+
+        <!-- <div class="list-buttons">
+            <button class="list-buttons__item last-searched">Last searched</button>
+            <button class="list-buttons__item advanced-search">Advanced search</button>
+            <button class="list-buttons__item favourite-recipes">Favourite recipes</button>
+        </div> -->
+
+        <div class="additional-menus">
+            <div class="additional-menus__last-searched hide additional-menu">
+                <p class="additional-menus__last-searched-text">The list contains up to 10 recently searched recipes.
+                    When you press on an item, you will see the recipe:
+                </p>
+                <ul class="additional-menus__last-searched-list">
+                    <li class="additional-menus__last-searched-list-item"><a
+                            class="additional-menus__last-searched-list-item-link" target="_blank"
+                            href="https://www.google.com">Rigatoni With Courgette, Lemon & Parmesan</a></li>
+                    <li class="additional-menus__last-searched-list-item"><a
+                            class="additional-menus__last-searched-list-item-link" target="_blank"
+                            href="https://www.google.com">Rigatoni With Courgette, Lemon & Parmesan</a></li>
+                    <li class="additional-menus__last-searched-list-item"><a
+                            class="additional-menus__last-searched-list-item-link" target="_blank"
+                            href="https://www.google.com">Rigatoni With Courgette, Lemon & Parmesan</a></li>
+                    <li class="additional-menus__last-searched-list-item"><a
+                            class="additional-menus__last-searched-list-item-link" target="_blank"
+                            href="https://www.google.com">Rigatoni With Courgette, Lemon & Parmesan</a></li>
+                    <li class="additional-menus__last-searched-list-item"><a
+                            class="additional-menus__last-searched-list-item-link" target="_blank"
+                            href="https://www.google.com">Rigatoni With Courgette, Lemon & Parmesan</a></li>
+                    <li class="additional-menus__last-searched-list-item"><a
+                            class="additional-menus__last-searched-list-item-link" target="_blank"
+                            href="https://www.google.com">Rigatoni </a></li>
+                    <li class="additional-menus__last-searched-list-item"><a
+                            class="additional-menus__last-searched-list-item-link" target="_blank"
+                            href="https://www.google.com">Rigatoni With Courgette, Lemon & Parmesan</a></li>
+                    <li class="additional-menus__last-searched-list-item"><a
+                            class="additional-menus__last-searched-list-item-link" target="_blank"
+                            href="https://www.google.com">Pizza 6: Pan-fried Hawaiian Pizza</a></li>
+                    <li class="additional-menus__last-searched-list-item"><a
+                            class="additional-menus__last-searched-list-item-link" target="_blank"
+                            href="https://www.google.com">Bunny Pizza</a></li>
+                    <li class="additional-menus__last-searched-list-item"><a
+                            class="additional-menus__last-searched-list-item-link" target="_blank"
+                            href="https://www.google.com">Pepperoni Pizza Rolls</a></li>
+                </ul>
+                <button class="clear">Clear List</button>
+            </div>
+            <div class="additional-menus__advanced-search additional-menu"></div>
+            <div class="additional-menus__favourite-recipes additional-menu">
+            </div>
         </div>
 
         <div class="recipe">
-            <div class="recipe__item">
-                <div class="recipe__item-image"></div>
+            <!-- <div class="recipe__item">
+                <div class="recipe__item-boxImage">
+                    <img class="recipe__item-boxImage-image" src="" alt="">
+                </div>
                 <div class="recipe__item-container">
                     <div class="recipe__item-container-header">
-                        <p class="recipe__item-container-title">Title: Rigatoni With Spicy Salami And Tomato recipes
-                        </p>
-                        <a href="http://www.google.com" target="_blank" class="recipe__item-container-link">View
-                            Recipe</a>
+                        <p class="recipe__item-container-title">Title: </p>
+                        <a href="" target="_blank" class="recipe__item-container-link">View Recipe</a>
                     </div>
                     <div class="recipe__item-container-info">
-                        <p class="recipe__item-container-cuisine"><span>Cuisine:</span> eastern europe</p>
-                        <p class="recipe__item-container-fat"><span>Fat:</span> 111g</p>
-                        <p class="recipe__item-container-diet"><span>Diet:</span> High-Protein</p>
-                        <p class="recipe__item-container-carb"><span>Carb:</span> 112g</p>
-                        <p class="recipe__item-container-calories"><span>Calories:</span> 2000kcal</p>
-                        <p class="recipe__item-container-protein"><span>Protein:</span> 114g</p>
+                        <p class="recipe__item-container-cuisine"><span>Cuisine:</span></p>
+                        <p class="recipe__item-container-fat"><span>Fat:</span></p>
+                        <p class="recipe__item-container-diet"><span>Diet:</span></p>
+                        <p class="recipe__item-container-carb"><span>Carb:</span></p>
+                        <p class="recipe__item-container-calories"><span>Calories:</span></p>
+                        <p class="recipe__item-container-protein"><span>Protein:</span></p>
                     </div>
                     <button class="recipe__item-container-fav">Add to favourite</button>
-                    <p class="recipe__item-container-warning">This recipe was added to fav!</p>
+                    <p class="recipe__item-container-warning"></p>
                 </div>
-            </div>
-            <div class="recipe__item">
-                <div class="recipe__item-image"></div>
-                <div class="recipe__item-container">
-                    <div class="recipe__item-container-header">
-                        <p class="recipe__item-container-title">Title: Rigatoni With Spicy Salami And Tomato recipes
-                        </p>
-                        <a href="#" class="recipe__item-container-link">View Recipe</a>
-                    </div>
-                    <div class="recipe__item-container-info">
-                        <p class="recipe__item-container-cuisine"><span>Cuisine:</span> eastern europe</p>
-                        <p class="recipe__item-container-fat"><span>Fat:</span> 111g</p>
-                        <p class="recipe__item-container-diet"><span>Diet:</span> High-Protein</p>
-                        <p class="recipe__item-container-carb"><span>Carb:</span> 112g</p>
-                        <p class="recipe__item-container-calories"><span>Calories:</span> 2000kcal</p>
-                        <p class="recipe__item-container-protein"><span>Protein:</span> 114g</p>
-                    </div>
-                    <button class="recipe__item-container-fav">Add to favourite</button>
-                    <p class="recipe__item-container-warning">This recipe was added to fav!</p>
-                </div>
-            </div>
-            <div class="recipe__item">
-                <div class="recipe__item-image"></div>
-                <div class="recipe__item-container">
-                    <div class="recipe__item-container-header">
-                        <p class="recipe__item-container-title">Title: Rigatoni With Spicy Salami And Tomato recipes
-                        </p>
-                        <a href="#" class="recipe__item-container-link">View Recipe</a>
-                    </div>
-                    <div class="recipe__item-container-info">
-                        <p class="recipe__item-container-cuisine"><span>Cuisine:</span> eastern europe</p>
-                        <p class="recipe__item-container-fat"><span>Fat:</span> 111g</p>
-                        <p class="recipe__item-container-diet"><span>Diet:</span> High-Protein</p>
-                        <p class="recipe__item-container-carb"><span>Carb:</span> 112g</p>
-                        <p class="recipe__item-container-calories"><span>Calories:</span> 2000kcal</p>
-                        <p class="recipe__item-container-protein"><span>Protein:</span> 114g</p>
-                    </div>
-                    <button class="recipe__item-container-fav">Add to favourite</button>
-                    <p class="recipe__item-container-warning">This recipe was added to fav!</p>
-                </div>
-            </div>
-            <div class="recipe__item">
-                <div class="recipe__item-image"></div>
-                <div class="recipe__item-container">
-                    <div class="recipe__item-container-header">
-                        <p class="recipe__item-container-title">Title: Rigatoni With Spicy Salami And Tomato recipes
-                        </p>
-                        <a href="#" class="recipe__item-container-link">View Recipe</a>
-                    </div>
-                    <div class="recipe__item-container-info">
-                        <p class="recipe__item-container-cuisine"><span>Cuisine:</span> eastern europe</p>
-                        <p class="recipe__item-container-fat"><span>Fat:</span> 111g</p>
-                        <p class="recipe__item-container-diet"><span>Diet:</span> High-Protein</p>
-                        <p class="recipe__item-container-carb"><span>Carb:</span> 112g</p>
-                        <p class="recipe__item-container-calories"><span>Calories:</span> 2000kcal</p>
-                        <p class="recipe__item-container-protein"><span>Protein:</span> 114g</p>
-                    </div>
-                    <button class="recipe__item-container-fav">Add to favourite</button>
-                    <p class="recipe__item-container-warning">This recipe was added to fav!</p>
-                </div>
-            </div>
-            <div class="recipe__item">
-                <div class="recipe__item-image"></div>
-                <div class="recipe__item-container">
-                    <div class="recipe__item-container-header">
-                        <p class="recipe__item-container-title">Title: Rigatoni With Spicy Salami And Tomato recipes
-                        </p>
-                        <a href="#" class="recipe__item-container-link">View Recipe</a>
-                    </div>
-                    <div class="recipe__item-container-info">
-                        <p class="recipe__item-container-cuisine"><span>Cuisine:</span> eastern europe</p>
-                        <p class="recipe__item-container-fat"><span>Fat:</span> 111g</p>
-                        <p class="recipe__item-container-diet"><span>Diet:</span> High-Protein</p>
-                        <p class="recipe__item-container-carb"><span>Carb:</span> 112g</p>
-                        <p class="recipe__item-container-calories"><span>Calories:</span> 2000kcal</p>
-                        <p class="recipe__item-container-protein"><span>Protein:</span> 114g</p>
-                    </div>
-                    <button class="recipe__item-container-fav">Add to favourite</button>
-                    <p class="recipe__item-container-warning">This recipe was added to fav!</p>
-                </div>
-            </div>
-            <div class="recipe__item">
-                <div class="recipe__item-image"></div>
-                <div class="recipe__item-container">
-                    <div class="recipe__item-container-header">
-                        <p class="recipe__item-container-title">Title: Rigatoni With Spicy Salami And Tomato recipes
-                        </p>
-                        <a href="#" class="recipe__item-container-link">View Recipe</a>
-                    </div>
-                    <div class="recipe__item-container-info">
-                        <p class="recipe__item-container-cuisine"><span>Cuisine:</span> eastern europe</p>
-                        <p class="recipe__item-container-fat"><span>Fat:</span> 111g</p>
-                        <p class="recipe__item-container-diet"><span>Diet:</span> High-Protein</p>
-                        <p class="recipe__item-container-carb"><span>Carb:</span> 112g</p>
-                        <p class="recipe__item-container-calories"><span>Calories:</span> 2000kcal</p>
-                        <p class="recipe__item-container-protein"><span>Protein:</span> 114g</p>
-                    </div>
-                    <button class="recipe__item-container-fav">Add to favourite</button>
-                    <p class="recipe__item-container-warning">This recipe was added to fav!</p>
-                </div>
-            </div>
+            </div> -->
+
 
         </div>
 
