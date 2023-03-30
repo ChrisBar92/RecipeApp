@@ -1,15 +1,11 @@
-const navBurger = document.querySelector('.nav__burger')
-const burgerIcon = document.querySelector('.fa-bars')
-const xIcon = document.querySelector('.fa-times')
-const navList = document.querySelector('.nav__list')
-const navListItem = document.querySelectorAll('.nav__list-item')
 const search = document.querySelector('.search')
 const searchInput = document.querySelector('.search__input')
 const searchWarning = document.querySelector('.search__warning')
-const recipeWarning = document.querySelector('.recipe__item-container-warning')
+const recipeView = document.querySelectorAll('.recipe__item-container-link')
 const recipe = document.querySelector('.recipe')
 const listButtons = document.querySelectorAll('.list-buttons__item')
-const additionalMenus = document.querySelectorAll('.additional-menu')
+const clearBtn = document.querySelector('.clear')
+const additionalSearchedList = document.querySelector('.additional-menus__last-searched-list')
 const additionFavouriteRecipes = document.querySelector('.additional-menus__favourite-recipes')
 
 let searchDish = ''
@@ -18,37 +14,43 @@ let recipesArray = []
 const APP_ID = '437b637b'
 const APP_KEY = '63fef548c3655824d9fd2b6458b87b4d'
 
-const handleNav = () => {
-	burgerIcon.classList.toggle('hide')
-	xIcon.classList.toggle('hide')
-	navList.classList.toggle('activeNav')
-}
-
-navBurger.addEventListener('click', handleNav)
-
 async function fetchAPI() {
-	const URL = `https://api.edamam.com/api/recipes/v2?type=public&q=${searchDish}&app_id=${APP_ID}&app_key=${APP_KEY}`
+	const URL = `https://api.edamam.com/api/recipes/v2?type=public&q=${searchDish}&app_id=${APP_ID}&app_key=${APP_KEY}&random=true`
 	const response = await fetch(URL)
 	const data = await response.json()
-	console.log(data.hits)
-	// if(data.hits.length > 0) {
-	// 	console.log(searchDish)
-	// }
-	createNewItems(data.hits)
-	lastSearched(data.hits)
 
-	// added and deleted to favourite tab
+	createNewItems(data.hits)
+
+	// added to last viewed tab
+	const recipeView = recipe.querySelectorAll('.recipe__item-container-link')
+	recipeView.forEach(button => {
+		button.addEventListener('click', () => {
+			let searchLi = document.createElement('li')
+			searchLi.classList.add('additional-menus__last-searched-list-item')
+			let searchA = document.createElement('a')
+			let copiedLink = button.cloneNode()
+			searchA = copiedLink
+			searchA.removeAttribute('class', 'recipe__item-container-link')
+			searchA.textContent = button.previousElementSibling.textContent
+			searchLi.append(searchA)
+			additionalSearchedList.append(searchLi)
+		})
+	})
+
+	// added and deleted favourite items
 	const favButton = recipe.querySelectorAll('.recipe__item-container-fav')
 	favButton.forEach(button => {
+		let favItem
 		button.addEventListener('click', () => {
 			button.classList.toggle('added')
 			if (button.matches('.added')) {
 				button.textContent = 'Added to favourite'
-				additionFavouriteRecipes.append(button.parentElement.parentElement)
+				favItem = button.parentElement.parentElement
+				additionFavouriteRecipes.append(favItem)
 			} else {
 				button.textContent = 'Add to favourite'
-				button.parentElement.parentElement.remove()
-				recipe.append(button.parentElement.parentElement)
+				additionFavouriteRecipes.removeChild(favItem)
+				recipe.append(favItem)
 			}
 		})
 	})
@@ -56,10 +58,6 @@ async function fetchAPI() {
 	if (data.count === 0) {
 		searchWarning.textContent = 'Meal or ingredient does not exist'
 	}
-}
-
-const lastSearched = e => {
-	console.log(e.target)
 }
 
 const createNewItems = items => {
@@ -72,7 +70,7 @@ const createNewItems = items => {
 						}" alt="${item.recipe.label}"></div>
                 <div class="recipe__item-container">
                     <div class="recipe__item-container-header">
-                        <p class="recipe__item-container-title">Title: ${item.recipe.label}</p>
+                        <p class="recipe__item-container-title">${item.recipe.label}</p>
                         <a href="${item.recipe.url}" target="_blank" class="recipe__item-container-link">View Recipe</a>
                     </div>
                     <div class="recipe__item-container-info">
@@ -110,11 +108,24 @@ const pressEnter = e => {
 		} else {
 			searchDish = searchInput.value
 			fetchAPI()
-
 			searchWarning.textContent = ''
 			searchInput.value = ''
 		}
 	}
 }
 
+const clearStuff = e => {
+	e.target.previousElementSibling.innerHTML = ''
+}
+
+const showAdditionalMenu = (e) => {
+  console.log(e.target)
+}
+
+
+
+listButtons.forEach(button => {
+	button.addEventListener('click', showAdditionalMenu)
+})
+clearBtn.addEventListener('click', clearStuff)
 searchInput.addEventListener('keydown', pressEnter)

@@ -23,13 +23,13 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem;
   margin-bottom: 0;
+  padding: 2rem;
 }
 .nav__title {
-  text-transform: uppercase;
   font-family: "Delicious Handrawn", cursive;
   font-size: 3rem;
+  text-transform: uppercase;
 }
 .nav__burger {
   padding: 1rem;
@@ -52,10 +52,10 @@ body {
   cursor: pointer;
 }
 .nav__list-button {
-  border-radius: 5px;
-  padding: 1rem;
   width: 100%;
+  padding: 1rem;
   font-size: 2.2rem;
+  border-radius: 5px;
 }
 
 .activeNav {
@@ -77,10 +77,10 @@ h1.header {
 .list-buttons {
   display: flex;
   justify-content: center;
-  padding: 2rem 0;
+  width: 100%;
+  padding: 1rem 0;
 }
 .list-buttons__item {
-  font-size: 1.8rem;
   padding: 1rem;
   text-align: center;
   font-weight: bold;
@@ -90,8 +90,9 @@ h1.header {
   border: 1px solid #000;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
-  padding: 1rem 2rem;
   margin: 0 2rem;
+  padding: 1rem 2rem;
+  font-size: 1.3rem;
 }
 .list-buttons__item:hover {
   outline: none;
@@ -100,26 +101,29 @@ h1.header {
 }
 
 .additional-menus {
-  margin: 2rem 0;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem 0;
 }
 .additional-menus__favourite-recipes {
-  width: 100%;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
 }
 .additional-menus__last-searched {
-  padding: 1rem;
-  border: 1px solid #000;
-  width: 100%;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #000;
 }
 .additional-menus__last-searched-text {
+  margin-bottom: 1rem;
   padding: 1rem 0;
   text-align: center;
-  margin-bottom: 1rem;
   font-size: 1.4rem;
 }
 .additional-menus__last-searched-list {
@@ -127,7 +131,7 @@ h1.header {
 }
 .additional-menus__last-searched-list-item {
   margin: 1rem 0;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   list-style: inside;
   list-style-type: decimal;
 }
@@ -147,6 +151,11 @@ h1.header {
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
   padding: 0.5rem 1rem;
+}
+.additional-menus .clear:hover {
+  outline: none;
+  background-color: #333;
+  color: #f1faee;
 }
 
 .search {
@@ -168,9 +177,9 @@ h1.header {
   color: #fff;
 }
 .search__warning {
+  padding-top: 1rem;
   color: #f00;
   font-size: 1.2rem;
-  padding-top: 1rem;
 }
 
 .recipe {
@@ -179,15 +188,15 @@ h1.header {
   flex-wrap: wrap;
 }
 .recipe__item {
-  height: 45rem;
-  margin-bottom: 2rem;
+  min-height: 45rem;
   width: 100%;
   max-width: 40rem;
+  margin-bottom: 2rem;
   border: 1px solid #000;
   background-color: #fefae0;
 }
 .recipe__item-boxImage {
-  height: 50%;
+  height: 22rem;
   width: 100%;
 }
 .recipe__item-boxImage-image {
@@ -207,9 +216,9 @@ h1.header {
   margin-bottom: 2rem;
 }
 .recipe__item-container-title {
+  width: 55%;
   font-size: 1.2rem;
   font-weight: bold;
-  width: 55%;
 }
 .recipe__item-container-link {
   width: 39%;
@@ -222,6 +231,11 @@ h1.header {
   border: 1px solid #000;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
+}
+.recipe__item-container-link:hover {
+  outline: none;
+  background-color: #333;
+  color: #f1faee;
 }
 .recipe__item-container-info {
   display: flex;
@@ -243,8 +257,8 @@ h1.header {
   font-weight: bold;
 }
 .recipe__item-container-fav {
-  display: block;
   margin: 1rem auto;
+  display: block;
   padding: 1rem;
   text-align: center;
   font-weight: bold;
@@ -254,6 +268,11 @@ h1.header {
   border: 1px solid #000;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
+}
+.recipe__item-container-fav:hover {
+  outline: none;
+  background-color: gold;
+  color: #000;
 }
 .recipe__item-container-warning {
   text-align: center;
@@ -269,6 +288,12 @@ h1.header {
 }
 
 @media (min-width: 350px) {
+  .additional-menus {
+    margin: 2rem auto;
+  }
+  .additional-menus__las-searched {
+    max-width: 40rem;
+  }
   .recipe__item-container {
     margin: 1.5rem;
     font-size: 1.2rem;
@@ -279,6 +304,25 @@ h1.header {
   .header {
     max-width: 60rem;
     margin: 0 auto;
+  }
+  .additional-menus {
+    width: 100%;
+  }
+  .additional-menus__last-searched {
+    max-width: 60rem;
+    padding: 2rem;
+  }
+  .additional-menus__last-searched-text {
+    font-size: 1.6rem;
+  }
+  .additional-menus__last-searched-list-item {
+    font-size: 1.4rem;
+  }
+  .additional-menus__favourite-recipes {
+    width: 100%;
+  }
+  .recipe__item-container-title {
+    font-size: 1.3rem;
   }
 }
 @media (min-width: 768px) {
@@ -291,6 +335,15 @@ h1.header {
   }
   .search__input {
     max-width: 50rem;
+  }
+  .additional-menus {
+    width: 100%;
+  }
+  .additional-menus__favourite-recipes {
+    justify-content: space-around;
+  }
+  .additional-menus__favourite-recipes .recipe__item {
+    width: 45%;
   }
   .recipe {
     justify-content: space-around;
@@ -311,11 +364,21 @@ h1.header {
     font-size: 4rem;
   }
   h1.header {
-    font-size: 2.6rem;
     margin: 2rem auto;
+    font-size: 2.6rem;
   }
   .search__input {
     max-width: 60rem;
+  }
+  .list-buttons__item {
+    font-size: 1.6rem;
+    padding: 1.5rem 3rem;
+  }
+  .additional-menus__last-searched .clear {
+    font-size: 1.4rem;
+  }
+  .additional-menus__favourite-recipes .recipe__item {
+    width: 32%;
   }
   .recipe__item {
     width: 32%;
