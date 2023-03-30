@@ -18,51 +18,14 @@ body {
   background-color: #e0e1dd;
 }
 
-.nav {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.header__title {
   margin-bottom: 0;
   padding: 2rem;
-}
-.nav__title {
   font-family: "Delicious Handrawn", cursive;
   font-size: 3rem;
   text-transform: uppercase;
 }
-.nav__burger {
-  padding: 1rem;
-  font-size: 1.8rem;
-  border: 1px solid #000;
-  border-radius: 5px;
-}
-.nav__list {
-  position: absolute;
-  left: -70%;
-  top: 0;
-  height: 100vh;
-  width: 70vw;
-  background-color: #f5ebe0;
-  border-right: 1px solid #000;
-  transition: all 1s;
-}
-.nav__list-item {
-  margin: 7rem 0;
-  cursor: pointer;
-}
-.nav__list-button {
-  width: 100%;
-  padding: 1rem;
-  font-size: 2.2rem;
-  border-radius: 5px;
-}
-
-.activeNav {
-  left: 0;
-}
-
-h1.header {
+.header__text {
   padding: 2rem;
   text-align: center;
   font-size: 2rem;
@@ -300,7 +263,6 @@ h1.header {
   }
 }
 @media (min-width: 568px) {
-  .nav,
   .header {
     max-width: 60rem;
     margin: 0 auto;
@@ -326,12 +288,9 @@ h1.header {
   }
 }
 @media (min-width: 768px) {
-  .nav,
   .header {
     max-width: 90rem;
-  }
-  .nav__burger {
-    display: none;
+    margin: 1rem;
   }
   .search__input {
     max-width: 50rem;
@@ -355,15 +314,14 @@ h1.header {
   }
 }
 @media (min-width: 992px) {
-  .nav,
   .header {
     max-width: 120rem;
     padding: 3rem;
   }
-  .nav__title {
+  .header__title {
     font-size: 4rem;
   }
-  h1.header {
+  .header__text {
     margin: 2rem auto;
     font-size: 2.6rem;
   }
