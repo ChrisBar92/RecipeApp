@@ -6,7 +6,8 @@ const recipe = document.querySelector('.recipe')
 const listButtons = document.querySelectorAll('.list-buttons__item')
 const clearBtn = document.querySelector('.clear')
 const additionalSearchedList = document.querySelector('.additional-menus__last-searched-list')
-const additionFavouriteRecipes = document.querySelector('.additional-menus__favourite-recipes')
+const additionalFavouriteRecipes = document.querySelector('.additional-menus__favourite-recipes')
+const additionalLastReviewed = document.querySelector('.additional-menus__last-searched')
 
 let searchDish = ''
 let recipesArray = []
@@ -46,10 +47,10 @@ async function fetchAPI() {
 			if (button.matches('.added')) {
 				button.textContent = 'Added to favourite'
 				favItem = button.parentElement.parentElement
-				additionFavouriteRecipes.append(favItem)
+				additionalFavouriteRecipes.append(favItem)
 			} else {
 				button.textContent = 'Add to favourite'
-				additionFavouriteRecipes.removeChild(favItem)
+				additionalFavouriteRecipes.removeChild(favItem)
 				recipe.append(favItem)
 			}
 		})
@@ -98,6 +99,8 @@ const createNewItems = items => {
 	
 	`
 		recipe.innerHTML = newItem
+		additionalFavouriteRecipes.classList.add('hide')
+		additionalLastReviewed.classList.add('hide')
 	})
 }
 
@@ -118,11 +121,29 @@ const clearStuff = e => {
 	e.target.previousElementSibling.innerHTML = ''
 }
 
-const showAdditionalMenu = (e) => {
-  console.log(e.target)
+const showAdditionalMenu = e => {
+	if (e.target.matches('.last-searched')) {
+		additionalLastReviewed.classList.toggle('hide')
+		if (!additionalLastReviewed.matches('.hide')) {
+			additionalFavouriteRecipes.classList.add('hide')
+			additionalFavouriteRecipes.classList.remove('focus')
+			e.target.classList.add('focus')
+		} else  {
+			e.target.classList.remove('focus')
+		}
+	} else if (e.target.matches('.favourite-recipes')) {
+		additionalFavouriteRecipes.classList.toggle('hide')
+		if (!additionalFavouriteRecipes.matches('.hide')) {
+			additionalLastReviewed.classList.add('hide')
+			additionalLastReviewed.classList.remove('focus')
+			e.target.classList.add('focus')
+			recipe.classList.add('hide')
+		} else {
+			e.target.classList.remove('focus')
+			recipe.classList.remove('hide')
+		}
+	}
 }
-
-
 
 listButtons.forEach(button => {
 	button.addEventListener('click', showAdditionalMenu)

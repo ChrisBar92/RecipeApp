@@ -253,6 +253,12 @@ body {
 	background-color: gold;
 }
 
+.focus {
+	outline: none;
+	background-color: #333;
+	color: #f1faee;
+}
+
 ////////////////////// MEDIA QUERIES
 @media (min-width: 350px) {
 	.additional-menus {
@@ -379,7 +385,6 @@ body {
 }
 
 @media (min-width: 1200px) {
-	.nav,
 	.header,
 	.main {
 		max-width: 140rem;
