@@ -4,6 +4,8 @@ const searchWarning = document.querySelector('.search__warning')
 const recipeView = document.querySelectorAll('.recipe__item-container-link')
 const recipe = document.querySelector('.recipe')
 const listButtons = document.querySelectorAll('.list-buttons__item')
+const lastViewedBtn = document.querySelector('.last-searched')
+const favouriteRecipesBtn = document.querySelector('.favourite-recipes')
 const clearBtn = document.querySelector('.clear')
 const additionalSearchedList = document.querySelector('.additional-menus__last-searched-list')
 const additionalFavouriteRecipes = document.querySelector('.additional-menus__favourite-recipes')
@@ -19,7 +21,9 @@ async function fetchAPI() {
 	const URL = `https://api.edamam.com/api/recipes/v2?type=public&q=${searchDish}&app_id=${APP_ID}&app_key=${APP_KEY}&random=true`
 	const response = await fetch(URL)
 	const data = await response.json()
-
+	recipe.classList.remove('hide')
+	favouriteRecipesBtn.classList.remove('focus')
+	lastViewedBtn.classList.remove('focus')
 	createNewItems(data.hits)
 
 	// added to last viewed tab
@@ -33,8 +37,12 @@ async function fetchAPI() {
 			searchA = copiedLink
 			searchA.removeAttribute('class', 'recipe__item-container-link')
 			searchA.textContent = button.previousElementSibling.textContent
-			searchLi.append(searchA)
-			additionalSearchedList.append(searchLi)
+			let checkItem = recipesArray.indexOf(searchA.textContent)
+			if (checkItem === -1) {
+				recipesArray.push(searchA.textContent)
+				searchLi.append(searchA)
+				additionalSearchedList.append(searchLi)
+			}
 		})
 	})
 
@@ -125,23 +133,27 @@ const showAdditionalMenu = e => {
 	if (e.target.matches('.last-searched')) {
 		additionalLastReviewed.classList.toggle('hide')
 		if (!additionalLastReviewed.matches('.hide')) {
+			favouriteRecipesBtn.classList.remove('focus')
 			additionalFavouriteRecipes.classList.add('hide')
-			additionalFavouriteRecipes.classList.remove('focus')
-			e.target.classList.add('focus')
-		} else  {
-			e.target.classList.remove('focus')
-		}
-	} else if (e.target.matches('.favourite-recipes')) {
-		additionalFavouriteRecipes.classList.toggle('hide')
-		if (!additionalFavouriteRecipes.matches('.hide')) {
-			additionalLastReviewed.classList.add('hide')
-			additionalLastReviewed.classList.remove('focus')
 			e.target.classList.add('focus')
 			recipe.classList.add('hide')
 		} else {
 			e.target.classList.remove('focus')
 			recipe.classList.remove('hide')
 		}
+	} else if (e.target.matches('.favourite-recipes')) {
+		additionalFavouriteRecipes.classList.toggle('hide')
+		if (!additionalFavouriteRecipes.matches('.hide')) {
+			lastViewedBtn.classList.remove('focus')
+			additionalLastReviewed.classList.add('hide')
+			e.target.classList.add('focus')
+			recipe.classList.add('hide')
+		} else {
+			e.target.classList.remove('focus')
+			recipe.classList.remove('hide')
+		}
+	} else {
+		recipe.classList.remove('hide')
 	}
 }
 
