@@ -1,4 +1,3 @@
-const search = document.querySelector('.search')
 const searchInput = document.querySelector('.search__input')
 const searchWarning = document.querySelector('.search__warning')
 const recipeView = document.querySelectorAll('.recipe__item-container-link')
