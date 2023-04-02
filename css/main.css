@@ -321,6 +321,7 @@ body {
 }
 @media (min-width: 992px) {
   .header {
+    margin: 0 auto;
     max-width: 120rem;
     padding: 3rem;
   }
@@ -353,32 +354,4 @@ body {
   .main {
     max-width: 140rem;
   }
-}
-.pagination {
-  width: calc(100% - 2rem);
-  padding: 1rem 0;
-}
-.pagination__container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: calc(100% - 2rem);
-  padding: 1rem 0;
-}
-.pagination__number, .pagination__button {
-  font-size: 1.1rem;
-  background-color: transparent;
-  border: none;
-  margin: 0.25rem 0.25rem;
-  cursor: pointer;
-  height: 2.5rem;
-  width: 2.5rem;
-  border-radius: 0.2rem;
-}
-.pagination__number:hover, .pagination__button:not(.disabled):hover {
-  background: #000;
-}
-.pagination__number.active {
-  color: #000;
-  background: #0085b6;
 }/*# sourceMappingURL=main.css.map */
