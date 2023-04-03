@@ -22,7 +22,7 @@ const APP_ID = '437b637b'
 const APP_KEY = '63fef548c3655824d9fd2b6458b87b4d'
 
 async function fetchAPI() {
-	const URL = `https://api.edamam.com/search?q=${searchDish}&app_id=${APP_ID}&app_key=${APP_KEY}&to=100`
+	const URL = `https://api.edamam.com/search?q=${searchDish}&app_id=${APP_ID}&app_key=${APP_KEY}&to=60`
 	const response = await fetch(URL)
 	const data = await response.json()
 	recipe.classList.remove('hide')
