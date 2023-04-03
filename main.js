@@ -47,9 +47,9 @@ const addToLastViewed = () => {
 			let searchLi = document.createElement('li')
 			searchLi.classList.add('additional-menus__last-searched-list-item')
 			let searchA = document.createElement('a')
-			searchA.classList.remove('.recipe__item-container-link')
 			let copiedLink = button.cloneNode()
 			searchA = copiedLink
+			searchA.classList.remove('recipe__item-container-link')
 			searchA.textContent = button.previousElementSibling.textContent
 			let checkItem = recipesArray.indexOf(searchA.textContent)
 			if (checkItem === -1) {
