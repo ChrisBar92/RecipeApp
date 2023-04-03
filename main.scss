@@ -20,16 +20,6 @@ body {
 	background-color: #e0e1dd;
 }
 
-// .nav {
-// 	&__title {
-// 		margin-bottom: 0;
-// 		padding: 2rem;
-// 		font-family: 'Delicious Handrawn', cursive;
-// 		font-size: 3rem;
-// 		text-transform: uppercase;
-// 	}
-// }
-
 .header {
 	&__title {
 		margin-bottom: 0;
@@ -244,6 +234,44 @@ body {
 		}
 	}
 }
+
+.pagination {
+	&__container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		padding: 1rem 0;
+	}
+
+	&__number,
+	&__button {
+		font-size: 1.2rem;
+		background-color: transparent;
+		border: none;
+		margin: 0.2rem;
+		cursor: pointer;
+		height: 2.5rem;
+		width: 2.5rem;
+		border-radius: 0.4rem;
+	}
+
+	&__button {
+		font-weight: bold;
+	}
+
+	&__number:hover,
+	&__button:not(.disabled):hover {
+		background: #333;
+		color: #f1faee;
+	}
+
+	&__number.active {
+		color: #f1faee;
+		background: #333;
+	}
+}
+
 
 .hide {
 	display: none;

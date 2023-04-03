@@ -55,7 +55,7 @@
             </div>
         </div>
 
-        <div class="recipe">
+        <div class="recipe" id="paginated-list">
             <!-- <div class="recipe__item">
                 <div class="recipe__item-boxImage">
                     <img class="recipe__item-boxImage-image" src="" alt="">
@@ -78,7 +78,21 @@
                 </div>
             </div> -->
         </div>
-        
+
+        <div class="pagination__container hide">
+                <button class="pagination__button" id="prev-button" aria-label="Previous page" title="Previous page">
+                    &lt;
+                </button>
+
+                <div class="pagination__numbers" id="pagination-numbers">
+
+                </div>
+
+                <button class="pagination__button" id="next-button" aria-label="Next page" title="Next page">
+                    &gt;
+                </button>
+            </div>
+
     </main>
 
     <script src="main.js"></script>

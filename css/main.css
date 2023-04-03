@@ -242,6 +242,35 @@ body {
   color: #f00;
 }
 
+.pagination__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 0;
+}
+.pagination__number, .pagination__button {
+  font-size: 1.2rem;
+  background-color: transparent;
+  border: none;
+  margin: 0.2rem;
+  cursor: pointer;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 0.4rem;
+}
+.pagination__button {
+  font-weight: bold;
+}
+.pagination__number:hover, .pagination__button:not(.disabled):hover {
+  background: #333;
+  color: #f1faee;
+}
+.pagination__number.active {
+  color: #f1faee;
+  background: #333;
+}
+
 .hide {
   display: none;
 }

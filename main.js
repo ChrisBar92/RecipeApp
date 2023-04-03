@@ -9,6 +9,11 @@ const clearBtn = document.querySelector('.clear')
 const additionalSearchedList = document.querySelector('.additional-menus__last-searched-list')
 const additionalFavouriteRecipes = document.querySelector('.additional-menus__favourite-recipes')
 const additionalLastReviewed = document.querySelector('.additional-menus__last-searched')
+const paginatedList = document.getElementById('paginated-list')
+const paginationContainer = document.querySelector('.pagination__container')
+const paginationNumbers = document.querySelector('.pagination__numbers')
+const nextButton = document.getElementById('next-button')
+const prevButton = document.getElementById('prev-button')
 
 let searchDish = ''
 let recipesArray = []
@@ -17,15 +22,25 @@ const APP_ID = '437b637b'
 const APP_KEY = '63fef548c3655824d9fd2b6458b87b4d'
 
 async function fetchAPI() {
-	const URL = `https://api.edamam.com/api/recipes/v2?type=public&q=${searchDish}&app_id=${APP_ID}&app_key=${APP_KEY}&random=true`
+	const URL = `https://api.edamam.com/search?q=${searchDish}&app_id=${APP_ID}&app_key=${APP_KEY}&to=100`
 	const response = await fetch(URL)
 	const data = await response.json()
 	recipe.classList.remove('hide')
 	favouriteRecipesBtn.classList.remove('focus')
 	lastViewedBtn.classList.remove('focus')
-	createNewItems(data.hits)
 
-	// added to last viewed tab
+	createNewItems(data.hits)
+	addToFavourite()
+	addToLastViewed()
+	pagination()
+
+	if (data.count === 0) {
+		searchWarning.textContent = 'Meal or ingredient does not exist'
+	}
+}
+
+// added to last viewed tab
+const addToLastViewed = () => {
 	const recipeView = recipe.querySelectorAll('.recipe__item-container-link')
 	recipeView.forEach(button => {
 		button.addEventListener('click', () => {
@@ -34,7 +49,6 @@ async function fetchAPI() {
 			let searchA = document.createElement('a')
 			let copiedLink = button.cloneNode()
 			searchA = copiedLink
-			searchA.removeAttribute('class', 'recipe__item-container-link')
 			searchA.textContent = button.previousElementSibling.textContent
 			let checkItem = recipesArray.indexOf(searchA.textContent)
 			if (checkItem === -1) {
@@ -44,8 +58,10 @@ async function fetchAPI() {
 			}
 		})
 	})
+}
 
-	// added and deleted favourite items
+// added and deleted favourite items
+const addToFavourite = () => {
 	const favButton = recipe.querySelectorAll('.recipe__item-container-fav')
 	favButton.forEach(button => {
 		let favItem
@@ -62,12 +78,9 @@ async function fetchAPI() {
 			}
 		})
 	})
-
-	if (data.count === 0) {
-		searchWarning.textContent = 'Meal or ingredient does not exist'
-	}
 }
 
+// function create recipes items
 const createNewItems = items => {
 	let newItem = ''
 	items.map(item => {
@@ -111,6 +124,7 @@ const createNewItems = items => {
 	})
 }
 
+// enter works after fill input
 const pressEnter = e => {
 	if (e.key === 'Enter') {
 		if (searchInput.value === '') {
@@ -124,12 +138,15 @@ const pressEnter = e => {
 	}
 }
 
+// function clear list in last viewed tab
 const clearStuff = e => {
 	e.target.previousElementSibling.innerHTML = ''
 }
 
+// function showing additional menus
 const showAdditionalMenu = e => {
 	if (e.target.matches('.last-searched')) {
+		paginationContainer.classList.add('hide')
 		additionalLastReviewed.classList.toggle('hide')
 		if (!additionalLastReviewed.matches('.hide')) {
 			favouriteRecipesBtn.classList.remove('focus')
@@ -141,6 +158,7 @@ const showAdditionalMenu = e => {
 			recipe.classList.remove('hide')
 		}
 	} else if (e.target.matches('.favourite-recipes')) {
+		paginationContainer.classList.add('hide')
 		additionalFavouriteRecipes.classList.toggle('hide')
 		if (!additionalFavouriteRecipes.matches('.hide')) {
 			lastViewedBtn.classList.remove('focus')
@@ -156,6 +174,102 @@ const showAdditionalMenu = e => {
 	}
 }
 
+//paginaction
+function pagination() {
+	const listItems = paginatedList.querySelectorAll('.recipe__item')
+	const paginationLimit = 15
+	const pageCount = Math.ceil(listItems.length / paginationLimit)
+	let currentPage = 1
+	paginationContainer.classList.remove('hide')
+
+	const disableButton = button => {
+		button.classList.add('disabled')
+		button.setAttribute('disabled', true)
+	}
+
+	const enableButton = button => {
+		button.classList.remove('disabled')
+		button.removeAttribute('disabled')
+	}
+
+	const handlePageButtonsStatus = () => {
+		if (currentPage === 1) {
+			disableButton(prevButton)
+		} else {
+			enableButton(prevButton)
+		}
+
+		if (pageCount === currentPage) {
+			disableButton(nextButton)
+		} else {
+			enableButton(nextButton)
+		}
+	}
+
+	const handleActivePageNumber = () => {
+		document.querySelectorAll('.pagination__number').forEach(button => {
+			button.classList.remove('active')
+			const pageIndex = Number(button.getAttribute('page-index'))
+			if (pageIndex == currentPage) {
+				button.classList.add('active')
+			}
+		})
+	}
+
+	const appendPageNumber = index => {
+		const pageNumber = document.createElement('button')
+		pageNumber.className = 'pagination__number'
+		pageNumber.innerHTML = index
+		pageNumber.setAttribute('page-index', index)
+		pageNumber.setAttribute('aria-label', 'Page ' + index)
+
+		paginationNumbers.appendChild(pageNumber)
+	}
+
+	const getPaginationNumbers = () => {
+		for (let i = 1; i <= pageCount; i++) {
+			appendPageNumber(i)
+		}
+	}
+
+	const setCurrentPage = pageNum => {
+		currentPage = pageNum
+		handleActivePageNumber()
+		handlePageButtonsStatus()
+		const prevRange = (pageNum - 1) * paginationLimit
+		const currRange = pageNum * paginationLimit
+
+		listItems.forEach((item, index) => {
+			item.classList.add('hide')
+			if (index >= prevRange && index < currRange) {
+				item.classList.remove('hide')
+			}
+		})
+	}
+
+	getPaginationNumbers()
+	setCurrentPage(1)
+
+	prevButton.addEventListener('click', () => {
+		setCurrentPage(currentPage - 1)
+	})
+
+	nextButton.addEventListener('click', () => {
+		setCurrentPage(currentPage + 1)
+	})
+
+	document.querySelectorAll('.pagination__number').forEach(button => {
+		const pageIndex = Number(button.getAttribute('page-index'))
+
+		if (pageIndex) {
+			button.addEventListener('click', () => {
+				setCurrentPage(pageIndex)
+			})
+		}
+	})
+}
+
+// add event listeners
 listButtons.forEach(button => {
 	button.addEventListener('click', showAdditionalMenu)
 })
