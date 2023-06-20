@@ -32,6 +32,7 @@ async function fetchAPI() {
 	createNewItems(data.hits)
 	addToFavourite()
 	addToLastViewed()
+	// paginationContainer.remove()
 	pagination()
 
 	if (data.count === 0) {
@@ -228,6 +229,7 @@ function pagination() {
 	}
 
 	const getPaginationNumbers = () => {
+		paginationNumbers.innerHTML = ''
 		for (let i = 1; i <= pageCount; i++) {
 			appendPageNumber(i)
 		}
