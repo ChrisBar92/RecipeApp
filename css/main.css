@@ -151,7 +151,7 @@ body {
   flex-wrap: wrap;
 }
 .recipe__item {
-  min-height: 45rem;
+  min-height: 50rem;
   width: 100%;
   max-width: 40rem;
   margin-bottom: 2rem;
@@ -159,7 +159,7 @@ body {
   background-color: #fefae0;
 }
 .recipe__item-boxImage {
-  height: 22rem;
+  height: 25rem;
   width: 100%;
 }
 .recipe__item-boxImage-image {
